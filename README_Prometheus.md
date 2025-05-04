@@ -1,44 +1,49 @@
-# Cursor Auto Accept: AI Code Suggestion Automation Tool
+# Cursor Auto Accept: Intelligent AI Code Suggestion Automation Tool
 
 ## Project Overview
 
-Cursor Auto Accept is an intelligent automation tool designed to streamline the interaction with Cursor's AI code generation platform by automatically accepting AI suggestions. The project addresses the repetitive task of manually clicking "Accept" buttons when working with AI-generated code, providing developers with a seamless and efficient coding experience.
+Cursor Auto Accept is an intelligent automation tool designed to streamline the interaction with Cursor's AI code suggestion interface. This sophisticated bot automatically detects and clicks the "Accept" button for AI-generated code suggestions across multiple monitors, reducing manual intervention and improving developer workflow.
 
-### Key Purpose
+### Core Purpose
 
-The tool automates the process of accepting AI code suggestions across multiple monitors, reducing manual intervention and allowing developers to maintain their workflow without interruption. It solves several common challenges in AI-assisted coding:
+The primary goal of Cursor Auto Accept is to eliminate repetitive mouse clicks when accepting AI-generated code suggestions. By using advanced image recognition and template matching techniques, the tool:
+- Automatically identifies Cursor's AI suggestion accept buttons
+- Performs precise, context-aware clicks
+- Supports multi-monitor environments
+- Implements intelligent error handling and recovery mechanisms
 
-- Eliminating repetitive manual acceptance of code suggestions
-- Supporting multi-monitor setups with per-monitor calibration
-- Providing intelligent button detection with high accuracy
+### Key Features
 
-### Core Features
+#### Intelligent Matching
+- Advanced template matching with configurable confidence thresholds
+- Adaptive screen scanning across multiple monitors
+- Precise button detection using computer vision techniques
 
-- **Multi-Monitor Support**: Calibrates and operates independently on different monitors
-- **Intelligent Button Detection**: Uses advanced template matching with 80% confidence threshold
-- **Adaptive Clicking**: Automatically identifies and clicks on AI suggestion accept buttons
-- **Performance Management**: 
-  - Rate-limited to 8 clicks per minute to prevent system overload
-  - Restores cursor position after each click
-  - Comprehensive logging for tracking bot activities
+#### Smart Interaction Controls
+- Rate limiting to prevent excessive clicking (max 8 clicks per minute)
+- Automatic cursor position restoration after interactions
+- Comprehensive logging and debug capabilities
 
-### Technical Highlights
+#### Robust Error Handling
+- Automatic detection and recovery from unexpected UI states
+- Graceful error logging and system monitoring
+- Configurable scan intervals and debug modes
 
-- Utilizes computer vision techniques for button recognition
-- Implements automatic calibration for precise button location
-- Supports dynamic screen configuration
-- Provides robust error handling and recovery mechanisms
+### Benefits
 
-The tool is particularly valuable for developers who frequently use AI code generation tools and want to minimize manual interaction, allowing them to focus more on coding and less on mechanical tasks.
+- **Increased Productivity**: Automates repetitive accept button clicks
+- **Cross-Platform Compatibility**: Works with multiple monitor setups
+- **Flexible Configuration**: Customizable confidence thresholds and scan intervals
+- **Minimal Overhead**: Lightweight Python implementation with low system impact
+- **Comprehensive Logging**: Detailed tracking of bot activities for transparency and troubleshooting
 
 ## Getting Started, Installation, and Setup
 
 ### Prerequisites
 
-Before getting started, ensure you have the following:
 - Python 3.8 or higher
 - Git
-- A terminal or command line interface
+- Terminal or command line interface
 
 ### Quick Start
 
@@ -53,47 +58,31 @@ cd cursor-auto-accept
 ./setup.sh
 ```
 
-### Installation
+### Dependencies
 
-#### System Requirements
-- Supported Operating Systems: Linux, macOS
-- Required Python Packages:
-  - opencv-python (>=4.8.0)
-  - numpy (>=1.24.0)
-  - pyautogui (>=0.9.54)
-  - pillow (>=10.0.0)
-  - mss (>=9.0.1)
+Install the following Python packages (automatically handled by `setup.sh`):
+- OpenCV (>=4.8.0)
+- NumPy (>=1.24.0)
+- PyAutoGUI (>=0.9.54)
+- Pillow (>=10.0.0)
+- MSS (>=9.0.1)
 
-#### Virtual Environment Setup
-The `setup.sh` script automatically:
-- Creates necessary directories
-- Sets up file permissions
-- Creates a Python virtual environment
-- Installs required dependencies
+### Calibration
 
-### Configuration and Calibration
-
-Before using the bot, you must calibrate it for each monitor:
+Before first use, calibrate the bot for each monitor:
 
 1. Stop any existing bot instances:
 ```bash
 ./stop_clickbot.sh
 ```
 
-2. Activate the virtual environment:
+2. Run calibration:
 ```bash
-source venv/bin/activate
-```
-
-3. Run calibration for all monitors:
-```bash
+# For all monitors
 python cursor_auto_accept.py --capture
-```
 
-Or for a specific monitor (0-based index):
-```bash
-python cursor_auto_accept.py --capture --monitor 0  # First monitor
-python cursor_auto_accept.py --capture --monitor 1  # Second monitor
+# For a specific monitor (0-based index)
+python cursor_auto_accept.py --capture --monitor 0
 ```
 
 ### Running the Bot
@@ -108,6 +97,14 @@ Stop the bot:
 ./stop_clickbot.sh
 ```
 
+### Development Mode
+
+To run the bot in a development environment:
+```bash
+source venv/bin/activate
+python cursor_auto_accept.py
+```
+
 ### Monitoring
 
 Monitor bot activity via logs:
@@ -115,284 +112,296 @@ Monitor bot activity via logs:
 tail -f temp/logs/clickbot.log
 ```
 
-### Development Mode
-
-To run the bot in a development environment:
-1. Activate the virtual environment
-2. Run the main script directly:
-```bash
-source venv/bin/activate
-python cursor_auto_accept.py
-```
+### Platform Support
+- Supports Linux and macOS
+- Requires Python 3.8+
+- Multi-monitor configuration supported
 
 ### Important Notes
-- The bot has a built-in rate limit of 8 clicks per minute
-- A minimum confidence threshold of 0.8 (80% match) is required for button detection
-- Per-monitor calibration is essential for accurate performance
+- Rate limited to 8 clicks per minute
+- 80% confidence threshold for button detection
+- Per-monitor calibration required
 
 ## Features / Capabilities
 
-### Automated UI Interaction
-- Intelligent screen scanning and template matching for automated UI interactions
-- Multi-monitor support with dynamic monitor detection
-- Configurable confidence threshold for match accuracy
+### Core Functionality
+- Automatic AI suggestion acceptance for Cursor IDE
+- Intelligent image matching for locating accept buttons
+- Cross-platform support with multi-monitor configuration
 
 ### Advanced Image Recognition
-- Precise template matching using computer vision techniques
-- Supports multiple image template formats (PNG, JPG, JPEG)
-- Adaptive screen region scanning
+- Template matching with configurable confidence thresholds
+- Multi-stage image quality assessment including:
+  - Structural similarity
+  - Pattern confidence
+  - Edge similarity
+  - Histogram matching
 
-### Robust Error Handling
-- Automated error state detection and recovery
-- Graceful interrupt and signal handling
-- Comprehensive logging and debug capabilities
+### Performance and Reliability Features
+- Rate limiting to prevent excessive clicking (max 8 clicks per minute)
+- Adaptive error handling with consecutive failure detection
+- Automatic cursor position restoration after clicks
+- Detailed logging for tracking bot activities
 
-### Customization Options
-- Configurable scan interval
-- Adjustable confidence threshold
-- Debug mode for detailed logging and visual debugging
+### Monitor and Display Support
+- Per-monitor calibration
+- Dynamic screen capture across multiple displays
+- Adjustable monitor-specific settings
 
-### Key Capabilities
-- Automatic click generation based on image template matching
-- Intelligent cooldown mechanism to prevent rapid clicking
-- Periodic monitor rechecking to maintain application context
+### Safety and Control Mechanisms
+- PyAutoGUI fail-safe option to stop bot by moving mouse to screen corner
+- Configurable click interval and delay between actions
+- Precise click targeting with center-point calculation
 
-### Technical Features
-- Cross-platform compatibility (uses mss for screen capture)
-- Flexible configuration through command-line arguments
-- Modular design with separate components for image matching, error recovery, and logging
+### Monitoring and Diagnostics
+- Comprehensive logging to `temp/logs/clickbot.log`
+- Runtime error tracking and reporting
+- Temporary file management for debugging
+
+### Configuration Options
+- Customizable matching thresholds
+  - Base confidence threshold: 0.8 (80% match)
+  - High-confidence clicks require > 0.9 confidence
+- Configurable search and update intervals
+  - Default search interval: 0.2 seconds
+  - Log update interval: 5 seconds
 
 ## Usage Examples
 
 ### Basic Usage
 
-Run the bot using the default configuration:
+Run the bot using Python with optional configuration parameters:
 
 ```bash
-python3 main.py
+python main.py                           # Default mode
+python main.py --debug                   # Enable debug logging
+python main.py --interval 5.0            # Set scan interval to 5 seconds
+python main.py --confidence 0.9          # Adjust confidence threshold
 ```
 
-### Command Line Options
+### Configuration Options
 
-The application supports several configuration options:
+- `--debug`: Enables verbose logging and saves debug images
+- `--interval`: Sets scan interval between matches (default: 3.0 seconds)
+- `--confidence`: Sets minimum confidence threshold for image matching (default: 0.8)
 
-#### Debug Mode
-Enable detailed logging and debug features:
+### Running as a Background Process
+
+For automated execution, use the provided shell scripts:
+
 ```bash
-python3 main.py --debug
+# Start the bot in the background
+./start_clickbot.sh
+
+# Stop the running bot
+./stop_clickbot.sh
 ```
 
-#### Custom Scan Interval
-Adjust the scan interval (default is 3.0 seconds):
-```bash
-python3 main.py --interval 5.0  # Scan every 5 seconds
-```
+### Platform-Specific Notes
 
-#### Confidence Threshold
-Modify the match confidence threshold (default is 0.8):
-```bash
-python3 main.py --confidence 0.7  # Lower confidence for more lenient matching
-```
+#### macOS
+- Ensure Terminal/iTerm2 has accessibility permissions
+- The script will open a new Terminal window when launching
 
-### Combining Options
-You can combine multiple options:
-```bash
-python3 main.py --debug --interval 2.5 --confidence 0.75
-```
-
-### Startup Script
-For convenience, use the provided startup script:
-```bash
-./run_bot.sh
-```
-
-#### Platform Support
-- Supports running on macOS and Linux
-- Automatically opens in a new terminal window on macOS
-- Falls back to current terminal or xterm on other systems
-
-### Important Notes
-- Requires Python 3 and dependencies from `requirements.txt`
-- Designed for automated UI interaction with image matching
-- Configurable logging and error recovery mechanisms
+#### Linux
+- The script uses `xterm` or falls back to the current terminal
+- Ensure `DISPLAY` is correctly set for GUI interactions
 
 ## Project Structure
 
-The project is organized into several key directories and files to support its functionality:
+The project is organized into several key directories and files that support different functionalities:
 
-#### Main Components
-- `main.py`: Central script for the primary application logic
-- `clickbot.py`: Core implementation of the click automation bot
+### Core Application Files
+- `main.py`: Primary entry point for the application
+- `clickbot.py`: Core implementation of the click automation logic
 - `cursor_auto_accept.py`: Script for automatic acceptance functionality
 - `error_recovery.py`: Module handling error recovery mechanisms
-- `image_matcher.py`: Image matching and template recognition utilities
+- `image_matcher.py`: Image matching and template detection utilities
 
-#### Configuration and Setup
-- `requirements.txt`: List of Python package dependencies
-- `setup.sh`: Setup script for project initialization
-- `run_bot.sh`: Script to launch the bot
-- `start_clickbot.sh`: Startup script for the click bot
-- `stop_clickbot.sh`: Script to stop the click bot
-- `logging_config.py`: Logging configuration management
+### Configuration and Setup
+- `requirements.txt`: Lists all Python package dependencies
+- `setup.sh`: Script for initial project setup
+- `run_bot.sh`: Shell script to launch the application
+- `start_clickbot.sh`: Script to start the clickbot
+- `stop_clickbot.sh`: Script to stop the clickbot
+- `logging_config.py`: Configuration for logging mechanisms
+- `cursor-plugin.json`: Plugin configuration file
 
-#### Testing
-- `test_clickbot.py`: Unit tests for the click bot
-- `test_error_recovery.py`: Tests for error recovery functionality
-- `test_matcher.py`: Tests for image matching capabilities
+### Test Suite
+- `test_clickbot.py`: Unit tests for the main clickbot functionality
+- `test_error_recovery.py`: Tests for error recovery mechanisms
+- `test_matcher.py`: Tests for image matching functionality
 - `test_final.py`: Comprehensive final test suite
 
-#### Assets and Resources
-- `assets/`: Directory containing image assets and coordinate files
-  - `monitor_0/`: Monitor-specific image and coordinate files
-  - `backup/`: Backup copies of assets
-- `debug/`: Debug-related images and diagnostic outputs
-- `images/`: Additional project images and screenshots
-- `temp/`: Temporary file storage
-  - `logs/`: Log file storage
+### Assets and Resources
+- `assets/`: Directory containing various image and coordinate files
+  - `monitor_0/`: Contains monitor-specific button and click coordinate files
+  - `backup/`: Backup copies of button and monitor-related assets
+- `debug/`: Directory with debug images and correlation visualizations
+- `images/`: Additional project-related images and screenshots
+- `temp/`: Temporary file storage, including logs
 
-#### Additional Files
-- `extension.js`: Potential browser or IDE extension script
-- `cursor-plugin.json`: Configuration for cursor-related plugin
-- `analyze_*.py`: Various analysis scripts (calibration, hover results)
-
-#### Documentation
+### Documentation
 - `README.md`: Main project documentation
-- `README_Prometheus.md`: Additional README for Prometheus-related information
-- `cursor-instructions/`: Directory with development and process documentation
+- `README_Prometheus.md`: Additional documentation
+- `cursor-instructions/`: Subdirectory with detailed instruction files
   - `features.md`
   - `github-process.md`
   - `notes.md`
   - `readme.md`
-- `mvp-scope.md`: Minimum Viable Product scope document
+- `mvp-scope.md`: Minimum Viable Product documentation
+
+### Utility Scripts
+- `analyze_calibration.py`: Script for calibration analysis
+- `analyze_hover_results.py`: Hover result analysis utility
+- `analyze_template.py`: Template analysis script
+- `hover_calibrate.py`: Hover calibration script
+
+### Extension and Plugin
+- `extension.js`: Potentially a browser or IDE extension script
+
+The project structure is designed to modularize different aspects of the application, separating core logic, testing, configuration, and resource management into distinct directories and files.
 
 ## Technologies Used
 
-### Programming Languages
+### Programming Language
 - Python 3
-- JavaScript (Node.js)
 
 ### Core Libraries and Frameworks
 - OpenCV (opencv-python): Computer vision and image processing
 - NumPy: Numerical computing and array operations
-- PyAutoGUI: Desktop automation and GUI interaction
-- Pillow (PIL): Image manipulation
-- MSS: Cross-platform screen capture library
+- Pillow (PIL): Image manipulation and processing
+- PyAutoGUI: GUI automation and screen interaction
 
-### Development and Testing Tools
-- pytest (implied by test files): Unit testing framework
-- Shell scripting (Bash)
+### System and Utility Libraries
+- OS: Operating system interactions
+- Sys: System-specific parameters and functions
+- Time: Time access and conversions
+- Signal: Signal handling
+- Datetime: Date and time manipulation
+- Argparse: Command-line argument parsing
 
-### Extension Development
-- Cursor IDE extension framework
+### Monitoring and Logging
+- Integrated custom logging configuration for detailed tracking and debugging
 
-### Operating System Compatibility
-- Cross-platform (Linux/macOS/Windows implied by library choices)
+### Development Tools
+- Python standard library
+- Shell scripts for bot management (`.sh` files)
+
+### Platform Support
+- Cross-platform (Windows, macOS, Linux) through Python libraries
 
 ## Additional Notes
 
 ### Performance Considerations
 
-The Cursor Auto Accept bot is designed with careful attention to system performance and user experience:
+The script is designed with rate limiting to prevent excessive system load, capped at 8 clicks per minute. This helps maintain system stability and prevents potential disruptions during AI suggestion acceptance.
 
-- Rate-limited to prevent system overload (maximum 8 clicks per minute)
-- Lightweight image processing using OpenCV and template matching
-- Configurable confidence thresholds to minimize false positives
-- Minimal system resource consumption
+### Monitoring and Logging
 
-### Future Development Roadmap
+All bot activities are comprehensively logged in `temp/logs/clickbot.log`. The logging system provides:
+- Timestamped event tracking
+- Click event recordings
+- Error and status updates
+- Configurable log update interval (default: 5 seconds)
 
-The project has a clear vision for future enhancements, focusing on:
+### Multi-Monitor Support
 
-- Advanced multi-monitor support
-- More robust button detection algorithms
-- Enhanced UI for calibration and debugging
-- Expanded configuration options
-- Improved error handling and logging mechanisms
+The bot supports calibration and operation across multiple monitors, with:
+- Per-monitor button detection
+- Separate calibration images for each display
+- Flexible monitor selection during calibration
+- Dynamic screen scanning capability
 
-### Known Limitations
+### Error Recovery
 
-- Requires manual calibration for each monitor setup
-- Depends on visual button recognition (may fail with UI changes)
-- Performance can vary based on screen resolution and monitor configuration
-- Requires Python 3.8+ environment
+The bot includes built-in error recovery mechanisms:
+- Automatic restart capabilities
+- Persistent process tracking via PID files
+- Graceful handling of calibration and detection failures
+- Configurable confidence thresholds for button matching
 
 ### Security and Privacy
 
-- No external data transmission
-- Operates entirely locally
-- Uses system-level screenshot and mouse control libraries
-- Minimal persistent data storage (only calibration images and logs)
+Key security features include:
+- Cursor position restoration after clicks
+- Rate-limited automation to prevent system abuse
+- Local image-based detection (no network dependencies)
+- No persistent storage of sensitive information
 
-### System Compatibility
+### System Requirements
 
-Tested and verified on:
-- Linux environments
-- Multiple monitor configurations
-- Varying screen resolutions
+Ensure the following Python libraries are installed:
+- OpenCV for image processing
+- PyAutoGUI for mouse and keyboard automation
+- MSS for multi-screen screenshots
+- NumPy for numerical operations
+- Pillow for image handling
 
-### Monitoring and Diagnostics
+### Compatibility
 
-Comprehensive logging allows for detailed troubleshooting:
-- Detailed click events recorded
-- Error tracking
-- Performance metrics
-- Monitor-specific calibration logs
+- Tested on Python 3.8+
+- Compatible with major operating systems
+- Requires GUI access for mouse and keyboard control
 
-### Community and Contributions
+### Limitations
 
-This is an open-source project welcoming community contributions. Potential areas for improvement include:
-- Cross-platform compatibility
-- Additional monitor detection methods
-- Enhanced machine learning-based button recognition
+- Requires manual initial calibration
+- Dependent on consistent UI elements in Cursor AI
+- Performance may vary with different screen resolutions and UI scaling
 
 ## Contributing
 
-We welcome contributions to the project! To ensure a smooth collaboration, please follow these guidelines:
+We welcome contributions to this project! To help maintain code quality and collaboration efficiency, please follow these guidelines:
 
 ### Branch Strategy
 - Create a new branch for each major feature or significant change
-- Use a descriptive branch name that indicates the work being done
-- Branches should be created from the main development branch
+- Branch names should initially use a timestamp, which can later be renamed to a more descriptive name
 
-### Contribution Process
-1. Fork the repository
-2. Create a new branch for your feature or bugfix
-3. Make your changes, following the project's existing code style
-4. Write or update tests to cover your changes
-5. Ensure all tests pass before submitting a pull request
+### Commit Guidelines
+- Commit your work after completing a specific improvement or feature
+- Push your changes to the branch after each commit
+- Ensure that commits represent logical, cohesive changes
 
-### Testing
-- All code contributions must include appropriate unit tests
-- Run the existing test suite using `unittest` before submitting your pull request
-- Ensure code coverage is maintained or improved
+### Feature Development
+- Major features should only be implemented when specifically requested
+- Document new features in the project's feature documentation
+- Take notes about ideas, improvements, or potential vulnerabilities in the project notes
 
-### Coding Standards
-- Follow the existing code structure and style in the project
-- Use clear, descriptive variable and function names
-- Add comments to explain complex logic
-- Ensure code is well-formatted and readable
+### Testing and Debugging
+- Thoroughly test all changes before submitting
+- Test one feature or change at a time
+- Carefully review logs and debug any encountered errors
+- Prioritize security and potential vulnerabilities
 
-### Pull Request Guidelines
-- Provide a clear description of the changes in your pull request
-- Include the purpose and context of your changes
-- Reference any related issues in the pull request description
+### Pull Request Process
+- Ensure your code follows the existing project structure and style
+- Include clear, descriptive commit messages
+- Be prepared to discuss and iterate on your proposed changes
 
-### Issue Reporting
-- Use the GitHub Issues section to report bugs or suggest improvements
-- Provide detailed information, including steps to reproduce for bug reports
-- Include relevant context, error messages, or screenshots when applicable
+### Additional Notes
+- Efficiency and security are key priorities for this project
+- Be prepared to provide detailed information about your proposed changes
 
-*Note: By contributing to this project, you agree to abide by the project's Code of Conduct and licensing terms.*
+### Questions or Suggestions
+If you have questions about contributing, please open an issue to discuss your proposed changes.
 
 ## License
 
-This project is licensed under the MIT License. For the full license text, please see the [LICENSE](LICENSE) file in the repository.
+This project is licensed under the MIT License. 
 
-The MIT License is a permissive open-source license that allows you to:
-- Use the software commercially
-- Modify the software
-- Distribute the software
-- Use the software privately
-- Place a warranty on the software
+#### Key Permissions
 
-The only condition is that you include the original copyright notice and the permission notice in any substantial portion of the software.
+The MIT License is a permissive open-source license that provides the following rights:
+
+- Commercial use
+- Modification
+- Distribution
+- Private use
+- Warranty placement
+
+#### Conditions
+
+The only requirement is to include the original copyright notice and permission notice in any substantial portion of the software.
+
+For the complete license text, please refer to the [LICENSE](LICENSE) file in the repository.
